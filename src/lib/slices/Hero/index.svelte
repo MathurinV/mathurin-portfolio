@@ -61,8 +61,6 @@
 
 		.es-fullpage-hero {
 			font-family: system-ui, sans-serif;
-			background-color: #fff;
-			color: #333;
 		}
 
 		.es-fullpage-hero__image {
@@ -116,7 +114,6 @@
 		}
 
 		.es-fullpage-hero__content__intro__eyebrow {
-			color: #47c1af;
 			font-size: 1.15rem;
 			font-weight: 500;
 			margin: 0;
@@ -171,12 +168,9 @@
 			line-height: 1.3;
 			padding: 1rem 2.625rem;
 			transition: background-color 100ms linear;
-			background-color: #16745f;
-			color: #fff;
 		}
 
 		.es-call-to-action__link:hover {
-			background-color: #0d5e4c;
 		}
 	</style>
 </section>
