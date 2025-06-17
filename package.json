@@ -47,7 +47,9 @@
     "@vercel/speed-insights": "^1.2.0"
   },
   "trustedDependencies": [
+    "@scarf/scarf",
     "@tailwindcss/oxide",
-    "@vercel/speed-insights"
+    "@vercel/speed-insights",
+    "esbuild"
   ]
 }
