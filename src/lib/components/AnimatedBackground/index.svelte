@@ -135,7 +135,7 @@
 </div>
 
 <style>
-	.particle {
+	:global(.particle) {
 		will-change: transform, opacity, scale;
 		pointer-events: none;
 	}
