@@ -7,7 +7,10 @@
 </script>
 
 <div class="flex flex-col items-center gap-1 px-2">
-	<PrismicLink field={carousel_item.media_link} class="font-mono hover:underline" />
+	<div class="inline-flex items-center font-mono text-xl">
+		<PrismicLink field={carousel_item.media_link} class="hover:underline" />
+		<span class="ml-1 animate-pulse">_</span>
+	</div>
 	<div class="relative">
 		<img
 			src={carousel_item.image.url}

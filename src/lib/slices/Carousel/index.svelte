@@ -28,7 +28,7 @@
 	class="mx-auto w-full max-w-2xl p-4"
 >
 	<!-- Carousel Title -->
-	<h2 class="text-secondary-500 mb-6 text-center text-2xl font-bold">
+	<h2 class="text-secondary-500 mb-6 text-center text-4xl font-bold">
 		{slice.primary.title}
 	</h2>
 
