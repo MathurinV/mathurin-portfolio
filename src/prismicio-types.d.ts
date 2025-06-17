@@ -4,7 +4,7 @@ import type * as prismic from '@prismicio/client';
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type HomepageDocumentDataSlicesSlice = HeroSlice;
+type HomepageDocumentDataSlicesSlice = CarouselSlice | HeroSlice;
 
 /**
  * Content for Homepage documents
@@ -69,6 +69,93 @@ export type HomepageDocument<Lang extends string = string> = prismic.PrismicDocu
 >;
 
 export type AllDocumentTypes = HomepageDocument;
+
+/**
+ * Item in *Carousel → Default → Primary → Carousel group*
+ */
+export interface CarouselSliceDefaultPrimaryCarouselGroupItem {
+	/**
+	 * Media link field in *Carousel → Default → Primary → Carousel group*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: carousel.default.primary.carousel_group[].media_link
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	media_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+	/**
+	 * Image field in *Carousel → Default → Primary → Carousel group*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: carousel.default.primary.carousel_group[].image
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	image: prismic.ImageField<'thumbnail'>;
+
+	/**
+	 * Description field in *Carousel → Default → Primary → Carousel group*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: carousel.default.primary.carousel_group[].description
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	description: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *Carousel → Default → Primary*
+ */
+export interface CarouselSliceDefaultPrimary {
+	/**
+	 * Title field in *Carousel → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Carousel's title
+	 * - **API ID Path**: carousel.default.primary.title
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	title: prismic.KeyTextField;
+
+	/**
+	 * Carousel group field in *Carousel → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: carousel.default.primary.carousel_group[]
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	carousel_group: prismic.GroupField<Simplify<CarouselSliceDefaultPrimaryCarouselGroupItem>>;
+}
+
+/**
+ * Default variation for Carousel Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CarouselSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<CarouselSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *Carousel*
+ */
+type CarouselSliceVariation = CarouselSliceDefault;
+
+/**
+ * Carousel Shared Slice
+ *
+ * - **API ID**: `carousel`
+ * - **Description**: Carousel
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CarouselSlice = prismic.SharedSlice<'carousel', CarouselSliceVariation>;
 
 /**
  * Primary content in *Hero → Default → Primary*
@@ -245,6 +332,11 @@ declare module '@prismicio/client' {
 			HomepageDocumentData,
 			HomepageDocumentDataSlicesSlice,
 			AllDocumentTypes,
+			CarouselSlice,
+			CarouselSliceDefaultPrimaryCarouselGroupItem,
+			CarouselSliceDefaultPrimary,
+			CarouselSliceVariation,
+			CarouselSliceDefault,
 			HeroSlice,
 			HeroSliceDefaultPrimary,
 			HeroSliceImageRightPrimary,

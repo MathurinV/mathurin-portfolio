@@ -1,5 +1,5 @@
-import tailwindcss from '@tailwindcss/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
+import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
@@ -7,6 +7,7 @@ export default defineConfig({
 	server: {
 		fs: {
 			allow: ['./slicemachine.config.json']
-		}
+		},
+		host: '0.0.0.0'
 	}
 });
