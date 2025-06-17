@@ -38,7 +38,7 @@
 					</p>
 				{/if}
 				{#if isFilled.richText(slice.primary.title)}
-					<div class="es-fullpage-hero__content__intro__headline">
+					<div class="es-fullpage-hero__content__intro__headline text-primary-500">
 						<PrismicRichText field={slice.primary.title} />
 					</div>
 				{/if}

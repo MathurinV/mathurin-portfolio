@@ -7,9 +7,10 @@
 @source '../node_modules/@skeletonlabs/skeleton-svelte/dist';
 
 /* Custom fonts for Catppuccin theme */
-:root [data-theme='catppuccin'] {
+[data-theme='catppuccin'] {
 	--theme-font-family-base: 'Roboto', sans-serif;
 	--theme-font-family-heading: 'Roboto', sans-serif;
+	--body-background-color-dark: var(--color-surface-900);
 }
 
 /* If you want to use JetBrains Mono for code/monospace elements */
