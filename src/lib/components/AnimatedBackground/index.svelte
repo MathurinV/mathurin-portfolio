@@ -2,64 +2,67 @@
 	// No JavaScript needed - pure CSS animations
 </script>
 
-<div class="pointer-events-none fixed top-0 left-0 -z-10 h-dvh w-full overflow-hidden">
+<div
+	class="pointer-events-none fixed top-0 left-0 -z-10 h-dvh w-full overflow-hidden"
+	aria-hidden="true"
+>
 	<!-- Large floating dots -->
 	<div
-		class="animate-float-slow absolute h-32 w-32 rounded-full bg-gradient-to-br from-blue-400 to-purple-600 opacity-20 blur-sm"
+		class="animate-float-slow bg-primary-500 absolute h-32 w-32 rounded-full opacity-20"
 		style="top: 10%; left: 15%; animation-delay: 0s;"
 	></div>
 	<div
-		class="animate-float-medium absolute h-24 w-24 rounded-full bg-gradient-to-br from-pink-400 to-red-500 opacity-25 blur-sm"
+		class="animate-float-medium bg-secondary-500 absolute h-24 w-24 rounded-full blur-xs"
 		style="top: 60%; left: 70%; animation-delay: -2s;"
 	></div>
 	<div
-		class="animate-float-fast absolute h-20 w-20 rounded-full bg-gradient-to-br from-green-400 to-teal-500 opacity-30"
+		class="animate-float-fast bg-tertiary-500 absolute h-20 w-20 rounded-full opacity-40"
 		style="top: 30%; left: 80%; animation-delay: -1s;"
 	></div>
 
 	<!-- Medium floating dots -->
 	<div
-		class="animate-pulse-slow absolute h-16 w-16 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 opacity-20"
+		class="animate-pulse-slow bg-secondary-500 absolute h-16 w-16 rounded-full opacity-20"
 		style="top: 80%; left: 20%; animation-delay: -3s;"
 	></div>
 	<div
-		class="animate-float-medium absolute h-12 w-12 rounded-full bg-gradient-to-br from-indigo-400 to-blue-600 opacity-35 blur-sm"
+		class="animate-float-medium bg-tertiary-500 absolute h-12 w-12 rounded-full blur-xs"
 		style="top: 20%; left: 60%; animation-delay: -1.5s;"
 	></div>
 	<div
-		class="animate-float-slow absolute h-18 w-18 rounded-full bg-gradient-to-br from-purple-400 to-pink-600 opacity-25"
+		class="animate-float-slow bg-success-500 absolute h-18 w-18 rounded-full opacity-25"
 		style="top: 70%; left: 45%; animation-delay: -4s;"
 	></div>
 
 	<!-- Small floating dots -->
 	<div
-		class="animate-float-fast absolute h-8 w-8 rounded-full bg-gradient-to-br from-teal-400 to-cyan-500 opacity-40"
+		class="animate-float-fast bg-tertiary-500 absolute h-8 w-8 rounded-full opacity-40"
 		style="top: 45%; left: 25%; animation-delay: -2.5s;"
 	></div>
 	<div
-		class="animate-pulse-medium absolute h-6 w-6 rounded-full bg-gradient-to-br from-rose-400 to-pink-500 opacity-45"
+		class="animate-pulse-medium bg-success-500 absolute h-6 w-6 rounded-full opacity-45"
 		style="top: 15%; left: 85%; animation-delay: -1.8s;"
 	></div>
 	<div
-		class="animate-float-medium absolute h-10 w-10 rounded-full bg-gradient-to-br from-emerald-400 to-green-500 opacity-30 blur-sm"
+		class="animate-float-medium bg-warning-500 absolute h-10 w-10 rounded-full opacity-30 blur-sm"
 		style="top: 85%; left: 75%; animation-delay: -3.2s;"
 	></div>
 	<div
-		class="animate-float-slow absolute h-14 w-14 rounded-full bg-gradient-to-br from-violet-400 to-purple-500 opacity-25"
+		class="animate-float-slow bg-error-500 absolute h-14 w-14 rounded-full opacity-25"
 		style="top: 55%; left: 10%; animation-delay: -0.8s;"
 	></div>
 
 	<!-- Tiny accent dots -->
 	<div
-		class="animate-pulse-fast absolute h-4 w-4 rounded-full bg-gradient-to-br from-amber-400 to-yellow-500 opacity-50"
+		class="animate-pulse-fast bg-warning-500 absolute h-4 w-4 rounded-full opacity-50"
 		style="top: 25%; left: 40%; animation-delay: -1.2s;"
 	></div>
 	<div
-		class="animate-float-fast absolute h-3 w-3 rounded-full bg-gradient-to-br from-sky-400 to-blue-500 opacity-60"
+		class="animate-float-fast bg-error-500 absolute h-3 w-3 rounded-full opacity-60"
 		style="top: 65%; left: 90%; animation-delay: -2.8s;"
 	></div>
 	<div
-		class="animate-pulse-slow absolute h-5 w-5 rounded-full bg-gradient-to-br from-lime-400 to-green-500 opacity-40"
+		class="animate-pulse-slow bg-surface-500 absolute h-5 w-5 rounded-full opacity-40"
 		style="top: 90%; left: 55%; animation-delay: -4.5s;"
 	></div>
 </div>

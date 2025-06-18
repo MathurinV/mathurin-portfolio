@@ -4,70 +4,6 @@ import type * as prismic from '@prismicio/client';
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type AboutDocumentDataSlicesSlice = StackSlice;
-
-/**
- * Content for About documents
- */
-interface AboutDocumentData {
-	/**
-	 * Slice Zone field in *About*
-	 *
-	 * - **Field Type**: Slice Zone
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: about.slices[]
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/field#slices
-	 */
-	slices: prismic.SliceZone<AboutDocumentDataSlicesSlice> /**
-	 * Meta Title field in *About*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: A title of the page used for social media and search engines
-	 * - **API ID Path**: about.meta_title
-	 * - **Tab**: SEO & Metadata
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
-	 */;
-	meta_title: prismic.KeyTextField;
-
-	/**
-	 * Meta Description field in *About*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: A brief summary of the page
-	 * - **API ID Path**: about.meta_description
-	 * - **Tab**: SEO & Metadata
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
-	 */
-	meta_description: prismic.KeyTextField;
-
-	/**
-	 * Meta Image field in *About*
-	 *
-	 * - **Field Type**: Image
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: about.meta_image
-	 * - **Tab**: SEO & Metadata
-	 * - **Documentation**: https://prismic.io/docs/field#image
-	 */
-	meta_image: prismic.ImageField<never>;
-}
-
-/**
- * About document from Prismic
- *
- * - **API ID**: `about`
- * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type AboutDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
-	Simplify<AboutDocumentData>,
-	'about',
-	Lang
->;
-
 type HomepageDocumentDataSlicesSlice = CarouselSlice | HeroSlice;
 
 /**
@@ -132,7 +68,7 @@ export type HomepageDocument<Lang extends string = string> = prismic.PrismicDocu
 	Lang
 >;
 
-export type AllDocumentTypes = AboutDocument | HomepageDocument;
+export type AllDocumentTypes = HomepageDocument;
 
 /**
  * Item in *Carousel → Default → Primary → Carousel group*
@@ -371,93 +307,6 @@ type HeroSliceVariation = HeroSliceDefault | HeroSliceImageRight;
  */
 export type HeroSlice = prismic.SharedSlice<'hero', HeroSliceVariation>;
 
-/**
- * Item in *Stack → Default → Primary → Item*
- */
-export interface StackSliceDefaultPrimaryItemItem {
-	/**
-	 * Item title field in *Stack → Default → Primary → Item*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: stack.default.primary.item[].item_title
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
-	 */
-	item_title: prismic.KeyTextField;
-
-	/**
-	 * Item link field in *Stack → Default → Primary → Item*
-	 *
-	 * - **Field Type**: Link
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: stack.default.primary.item[].item_link
-	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-	 */
-	item_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
-
-	/**
-	 * Item image field in *Stack → Default → Primary → Item*
-	 *
-	 * - **Field Type**: Image
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: stack.default.primary.item[].item_image
-	 * - **Documentation**: https://prismic.io/docs/field#image
-	 */
-	item_image: prismic.ImageField<never>;
-
-	/**
-	 * Item Description field in *Stack → Default → Primary → Item*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: stack.default.primary.item[].item_description
-	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-	 */
-	item_description: prismic.RichTextField;
-}
-
-/**
- * Primary content in *Stack → Default → Primary*
- */
-export interface StackSliceDefaultPrimary {
-	/**
-	 * Item field in *Stack → Default → Primary*
-	 *
-	 * - **Field Type**: Group
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: stack.default.primary.item[]
-	 * - **Documentation**: https://prismic.io/docs/field#group
-	 */
-	item: prismic.GroupField<Simplify<StackSliceDefaultPrimaryItemItem>>;
-}
-
-/**
- * Default variation for Stack Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type StackSliceDefault = prismic.SharedSliceVariation<
-	'default',
-	Simplify<StackSliceDefaultPrimary>,
-	never
->;
-
-/**
- * Slice variation for *Stack*
- */
-type StackSliceVariation = StackSliceDefault;
-
-/**
- * Stack Shared Slice
- *
- * - **API ID**: `stack`
- * - **Description**: Stack
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type StackSlice = prismic.SharedSlice<'stack', StackSliceVariation>;
-
 declare module '@prismicio/client' {
 	interface CreateClient {
 		(
@@ -479,9 +328,6 @@ declare module '@prismicio/client' {
 
 	namespace Content {
 		export type {
-			AboutDocument,
-			AboutDocumentData,
-			AboutDocumentDataSlicesSlice,
 			HomepageDocument,
 			HomepageDocumentData,
 			HomepageDocumentDataSlicesSlice,
@@ -496,12 +342,7 @@ declare module '@prismicio/client' {
 			HeroSliceImageRightPrimary,
 			HeroSliceVariation,
 			HeroSliceDefault,
-			HeroSliceImageRight,
-			StackSlice,
-			StackSliceDefaultPrimaryItemItem,
-			StackSliceDefaultPrimary,
-			StackSliceVariation,
-			StackSliceDefault
+			HeroSliceImageRight
 		};
 	}
 }
