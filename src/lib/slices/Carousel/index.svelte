@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { CarouselCard } from '$lib/components';
-	import type { Content } from '@prismicio/client';
+	import { type Content } from '@prismicio/client';
 	import type { SliceComponentProps } from '@prismicio/svelte';
 	import { onMount, onDestroy } from 'svelte';
 
@@ -11,8 +11,10 @@
 
 	let currentIndex = $state(0);
 	let carouselContainer: HTMLElement;
+	let thumbnailContainer: HTMLElement;
 	let observer: IntersectionObserver;
 	let childElements: Element[] = [];
+	let thumbnailElements: Element[] = [];
 	let isScrolling = false;
 	let scrollRAF: number;
 
@@ -30,10 +32,35 @@
 				inline: 'center'
 			});
 
+			// Scroll thumbnail into view as well
+			scrollThumbnailIntoView(index);
+
 			// Reset scrolling flag after animation
 			setTimeout(() => {
 				isScrolling = false;
 			}, 500);
+		}
+	}
+
+	function scrollThumbnailIntoView(index: number) {
+		if (!thumbnailContainer || !thumbnailElements[index]) return;
+
+		const thumbnail = thumbnailElements[index] as HTMLElement;
+		const container = thumbnailContainer;
+
+		// Calculate if thumbnail is visible
+		const containerRect = container.getBoundingClientRect();
+		const thumbnailRect = thumbnail.getBoundingClientRect();
+
+		const isVisible =
+			thumbnailRect.left >= containerRect.left && thumbnailRect.right <= containerRect.right;
+
+		if (!isVisible) {
+			thumbnail.scrollIntoView({
+				behavior: 'smooth',
+				block: 'nearest',
+				inline: 'center'
+			});
 		}
 	}
 
@@ -59,6 +86,7 @@
 					const newIndex = childElements.indexOf(mostVisible.target);
 					if (newIndex !== -1 && newIndex !== currentIndex) {
 						currentIndex = newIndex;
+						scrollThumbnailIntoView(newIndex);
 					}
 				}
 			},
@@ -97,6 +125,7 @@
 
 		if (closestIndex !== currentIndex) {
 			currentIndex = closestIndex;
+			scrollThumbnailIntoView(closestIndex);
 		}
 	}
 
@@ -116,6 +145,10 @@
 			// Cache child elements once
 			childElements = Array.from(carouselContainer.children);
 
+			if (thumbnailContainer) {
+				thumbnailElements = Array.from(thumbnailContainer.children);
+			}
+
 			if ('IntersectionObserver' in window) {
 				setupIntersectionObserver();
 			} else {
@@ -131,7 +164,15 @@
 		}
 		carouselContainer?.removeEventListener('scroll', handleScroll);
 		childElements = [];
+		thumbnailElements = [];
 	});
+
+	let split_index = $derived(
+		Math.round(
+			((currentIndex + 1) / slice.primary.carousel_group.length) *
+				(slice.primary.title ?? '').length
+		)
+	);
 </script>
 
 <section
@@ -140,7 +181,7 @@
 	class="mx-auto w-full max-w-2xl p-4"
 >
 	<!-- Carousel Title -->
-	<h2 class="text-secondary-500 mb-6 text-center text-4xl font-bold">
+	<h2 class="mb-6 text-center text-4xl font-bold">
 		{slice.primary.title}
 	</h2>
 
@@ -150,7 +191,7 @@
 		<div
 			bind:this={carouselContainer}
 			id="carousel-container"
-			class="flex snap-x snap-mandatory overflow-x-scroll px-4 pb-4"
+			class="scrollbar-hide flex snap-x snap-mandatory overflow-x-scroll px-4 pb-4"
 		>
 			{#each slice.primary.carousel_group as carousel_item, index (carousel_item.media_link.text)}
 				<div class="flex w-full flex-shrink-0 snap-center justify-center px-8">
@@ -161,26 +202,42 @@
 			{/each}
 		</div>
 
-		<!-- Thumbnail Navigation -->
-		<div class="mt-4 flex justify-center gap-4 pb-2">
-			{#each slice.primary.carousel_group as carousel_item, index}
-				<div class="dark:bg-surface-900 h-16 w-16 rounded-lg bg-white shadow active:scale-95">
-					<button
-						type="button"
-						onclick={() => scrollToItem(index)}
-						class="h-16 w-16 overflow-x-scroll p-2 transition-opacity hover:opacity-80 focus:outline-none {currentIndex ===
-						index
-							? 'opacity-100'
-							: 'opacity-60'}"
-					>
-						<img
-							src={carousel_item.image.thumbnail.url || carousel_item.image.url}
-							alt={carousel_item.image.alt}
-							class="svg-primary h-full w-full object-cover"
-						/>
-					</button>
-				</div>
-			{/each}
+		<!-- Enhanced Thumbnail Navigation -->
+		<div class="relative mt-4 block pb-2 noscript:hidden">
+			<!-- Scrollable thumbnail container -->
+			<div
+				bind:this={thumbnailContainer}
+				class="scrollbar-hide flex snap-x snap-mandatory justify-center-safe gap-2 overflow-x-auto mask-r-from-90% mask-r-to-100% mask-l-from-90% mask-l-to-100% px-4 py-2"
+				style="scroll-behavior: smooth; -webkit-overflow-scrolling: touch;"
+			>
+				{#each slice.primary.carousel_group as carousel_item, index}
+					<div class="flex-shrink-0 snap-center">
+						<div
+							class="dark:bg-surface-900 h-12 w-12 rounded-lg bg-white shadow transition-all duration-75 active:scale-95 sm:h-16 sm:w-16 {currentIndex ===
+							index
+								? 'scale-105'
+								: ''}"
+						>
+							<button
+								type="button"
+								onclick={() => scrollToItem(index)}
+								class="h-full w-full overflow-hidden rounded-lg p-1 transition-all duration-75 sm:p-2 {currentIndex ===
+								index
+									? 'opacity-100'
+									: 'opacity-60 hover:opacity-80'}"
+								aria-label={`Go to slide ${index + 1}`}
+							>
+								<img
+									src={carousel_item.image.thumbnail?.url || carousel_item.image.url}
+									alt={carousel_item.image.alt || `Slide ${index + 1}`}
+									class="svg-primary h-full w-full rounded object-cover"
+									loading="lazy"
+								/>
+							</button>
+						</div>
+					</div>
+				{/each}
+			</div>
 		</div>
 	</div>
 </section>
