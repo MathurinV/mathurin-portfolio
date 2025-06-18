@@ -2,8 +2,10 @@
 
 import Carousel from './Carousel/index.svelte';
 import Hero from './Hero/index.svelte';
+import Stack from './Stack/index.svelte';
 
 export const components = {
 	carousel: Carousel,
-	hero: Hero
+	hero: Hero,
+	stack: Stack
 };
