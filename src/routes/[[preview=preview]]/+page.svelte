@@ -6,4 +6,6 @@
 	const { data }: PageProps = $props();
 </script>
 
-<SliceZone slices={data.page.data.slices} {components} />
+<div class="h-screen snap-y snap-mandatory overflow-y-scroll">
+	<SliceZone slices={data.page.data.slices} {components} />
+</div>

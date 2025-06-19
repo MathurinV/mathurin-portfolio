@@ -8,61 +8,61 @@
 >
 	<!-- Large floating dots -->
 	<div
-		class="animate-float-slow bg-primary-500 absolute h-32 w-32 rounded-full opacity-20"
+		class="animate-float-slow bg-primary-500 absolute h-32 w-32 rounded-full opacity-20 mix-blend-multiply"
 		style="top: 10%; left: 15%; animation-delay: 0s;"
 	></div>
 	<div
-		class="animate-float-medium bg-secondary-500 absolute h-24 w-24 rounded-full blur-xs"
+		class="animate-float-medium bg-secondary-500 absolute h-24 w-24 rounded-full mix-blend-multiply blur-xs"
 		style="top: 60%; left: 70%; animation-delay: -2s;"
 	></div>
 	<div
-		class="animate-float-fast bg-tertiary-500 absolute h-20 w-20 rounded-full opacity-40"
+		class="animate-float-fast bg-tertiary-500 absolute h-20 w-20 rounded-full opacity-40 mix-blend-multiply"
 		style="top: 30%; left: 80%; animation-delay: -1s;"
 	></div>
 
 	<!-- Medium floating dots -->
 	<div
-		class="animate-pulse-slow bg-secondary-500 absolute h-16 w-16 rounded-full opacity-20"
+		class="animate-pulse-slow bg-secondary-500 absolute h-16 w-16 rounded-full opacity-20 mix-blend-multiply"
 		style="top: 80%; left: 20%; animation-delay: -3s;"
 	></div>
 	<div
-		class="animate-float-medium bg-tertiary-500 absolute h-12 w-12 rounded-full blur-xs"
+		class="animate-float-medium bg-tertiary-500 absolute h-12 w-12 rounded-full mix-blend-multiply blur-xs"
 		style="top: 20%; left: 60%; animation-delay: -1.5s;"
 	></div>
 	<div
-		class="animate-float-slow bg-success-500 absolute h-18 w-18 rounded-full opacity-25"
+		class="animate-float-slow bg-success-500 absolute h-18 w-18 rounded-full opacity-25 mix-blend-multiply"
 		style="top: 70%; left: 45%; animation-delay: -4s;"
 	></div>
 
 	<!-- Small floating dots -->
 	<div
-		class="animate-float-fast bg-tertiary-500 absolute h-8 w-8 rounded-full opacity-40"
+		class="animate-float-fast bg-tertiary-500 absolute h-8 w-8 rounded-full opacity-40 mix-blend-multiply"
 		style="top: 45%; left: 25%; animation-delay: -2.5s;"
 	></div>
 	<div
-		class="animate-pulse-medium bg-success-500 absolute h-6 w-6 rounded-full opacity-45"
+		class="animate-pulse-medium bg-success-500 absolute h-6 w-6 rounded-full opacity-45 mix-blend-multiply"
 		style="top: 15%; left: 85%; animation-delay: -1.8s;"
 	></div>
 	<div
-		class="animate-float-medium bg-warning-500 absolute h-10 w-10 rounded-full opacity-30 blur-sm"
+		class="animate-float-medium bg-warning-500 absolute h-10 w-10 rounded-full opacity-30 mix-blend-multiply blur-sm"
 		style="top: 85%; left: 75%; animation-delay: -3.2s;"
 	></div>
 	<div
-		class="animate-float-slow bg-error-500 absolute h-14 w-14 rounded-full opacity-25"
+		class="animate-float-slow bg-error-500 absolute h-14 w-14 rounded-full opacity-25 mix-blend-multiply"
 		style="top: 55%; left: 10%; animation-delay: -0.8s;"
 	></div>
 
 	<!-- Tiny accent dots -->
 	<div
-		class="animate-pulse-fast bg-warning-500 absolute h-4 w-4 rounded-full opacity-50"
+		class="animate-pulse-fast bg-warning-500 absolute h-4 w-4 rounded-full opacity-50 mix-blend-multiply"
 		style="top: 25%; left: 40%; animation-delay: -1.2s;"
 	></div>
 	<div
-		class="animate-float-fast bg-error-500 absolute h-3 w-3 rounded-full opacity-60"
+		class="animate-float-fast bg-error-500 absolute h-3 w-3 rounded-full opacity-60 mix-blend-multiply"
 		style="top: 65%; left: 90%; animation-delay: -2.8s;"
 	></div>
 	<div
-		class="animate-pulse-slow bg-surface-500 absolute h-5 w-5 rounded-full opacity-40"
+		class="animate-pulse-slow bg-surface-500 absolute h-5 w-5 rounded-full opacity-40 mix-blend-multiply"
 		style="top: 90%; left: 55%; animation-delay: -4.5s;"
 	></div>
 </div>

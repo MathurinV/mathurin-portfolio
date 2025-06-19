@@ -4,7 +4,7 @@ import type * as prismic from '@prismicio/client';
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type HomepageDocumentDataSlicesSlice = CarouselSlice | HeroSlice;
+type HomepageDocumentDataSlicesSlice = CarouselSlice;
 
 /**
  * Content for Homepage documents
@@ -120,6 +120,16 @@ export interface CarouselSliceDefaultPrimary {
 	title: prismic.KeyTextField;
 
 	/**
+	 * Carousel text field in *Carousel → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: carousel.default.primary.carousel_text
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	carousel_text: prismic.RichTextField;
+
+	/**
 	 * Carousel group field in *Carousel → Default → Primary*
 	 *
 	 * - **Field Type**: Group
@@ -157,156 +167,6 @@ type CarouselSliceVariation = CarouselSliceDefault;
  */
 export type CarouselSlice = prismic.SharedSlice<'carousel', CarouselSliceVariation>;
 
-/**
- * Primary content in *Hero → Default → Primary*
- */
-export interface HeroSliceDefaultPrimary {
-	/**
-	 * eyebrowHeadline field in *Hero → Default → Primary*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: Eyebrow
-	 * - **API ID Path**: hero.default.primary.eyebrowHeadline
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
-	 */
-	eyebrowHeadline: prismic.KeyTextField;
-
-	/**
-	 * title field in *Hero → Default → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: hero.default.primary.title
-	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-	 */
-	title: prismic.RichTextField;
-
-	/**
-	 * description field in *Hero → Default → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: hero.default.primary.description
-	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-	 */
-	description: prismic.RichTextField;
-
-	/**
-	 * image field in *Hero → Default → Primary*
-	 *
-	 * - **Field Type**: Image
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: hero.default.primary.image
-	 * - **Documentation**: https://prismic.io/docs/field#image
-	 */
-	image: prismic.ImageField<never>;
-
-	/**
-	 * callToActionLink field in *Hero → Default → Primary*
-	 *
-	 * - **Field Type**: Link
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: hero.default.primary.callToActionLink
-	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-	 */
-	callToActionLink: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
-}
-
-/**
- * Default variation for Hero Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type HeroSliceDefault = prismic.SharedSliceVariation<
-	'default',
-	Simplify<HeroSliceDefaultPrimary>,
-	never
->;
-
-/**
- * Primary content in *Hero → Image Right → Primary*
- */
-export interface HeroSliceImageRightPrimary {
-	/**
-	 * eyebrowHeadline field in *Hero → Image Right → Primary*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: Eyebrow
-	 * - **API ID Path**: hero.imageRight.primary.eyebrowHeadline
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
-	 */
-	eyebrowHeadline: prismic.KeyTextField;
-
-	/**
-	 * title field in *Hero → Image Right → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: hero.imageRight.primary.title
-	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-	 */
-	title: prismic.RichTextField;
-
-	/**
-	 * description field in *Hero → Image Right → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: hero.imageRight.primary.description
-	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-	 */
-	description: prismic.RichTextField;
-
-	/**
-	 * image field in *Hero → Image Right → Primary*
-	 *
-	 * - **Field Type**: Image
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: hero.imageRight.primary.image
-	 * - **Documentation**: https://prismic.io/docs/field#image
-	 */
-	image: prismic.ImageField<never>;
-
-	/**
-	 * callToActionLink field in *Hero → Image Right → Primary*
-	 *
-	 * - **Field Type**: Link
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: hero.imageRight.primary.callToActionLink
-	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-	 */
-	callToActionLink: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
-}
-
-/**
- * Image Right variation for Hero Slice
- *
- * - **API ID**: `imageRight`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type HeroSliceImageRight = prismic.SharedSliceVariation<
-	'imageRight',
-	Simplify<HeroSliceImageRightPrimary>,
-	never
->;
-
-/**
- * Slice variation for *Hero*
- */
-type HeroSliceVariation = HeroSliceDefault | HeroSliceImageRight;
-
-/**
- * Hero Shared Slice
- *
- * - **API ID**: `hero`
- * - **Description**: Hero
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type HeroSlice = prismic.SharedSlice<'hero', HeroSliceVariation>;
-
 declare module '@prismicio/client' {
 	interface CreateClient {
 		(
@@ -336,13 +196,7 @@ declare module '@prismicio/client' {
 			CarouselSliceDefaultPrimaryCarouselGroupItem,
 			CarouselSliceDefaultPrimary,
 			CarouselSliceVariation,
-			CarouselSliceDefault,
-			HeroSlice,
-			HeroSliceDefaultPrimary,
-			HeroSliceImageRightPrimary,
-			HeroSliceVariation,
-			HeroSliceDefault,
-			HeroSliceImageRight
+			CarouselSliceDefault
 		};
 	}
 }

@@ -91,6 +91,17 @@
 						]
 					}
 				]
+			},
+			"carousel_text": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Non nulla pariatur nulla culpa dolor dolore quis veniam ipsum cupidatat incididunt labore sunt amet consectetur. Consequat laborum in veniam mollit magna nisi aliquip irure incididunt culpa sunt ipsum nostrud duis."
+						}
+					}
+				]
 			}
 		},
 		"items": []

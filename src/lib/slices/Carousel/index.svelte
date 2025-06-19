@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { CarouselCard } from '$lib/components';
-	import { type Content } from '@prismicio/client';
-	import type { SliceComponentProps } from '@prismicio/svelte';
+	import { isFilled, type Content } from '@prismicio/client';
+	import { PrismicRichText, type SliceComponentProps } from '@prismicio/svelte';
 	import { onMount, onDestroy } from 'svelte';
 
 	type Props = SliceComponentProps<Content.CarouselSlice>;
@@ -167,23 +167,32 @@
 		thumbnailElements = [];
 	});
 
-	let split_index = $derived(
-		Math.round(
-			((currentIndex + 1) / slice.primary.carousel_group.length) *
-				(slice.primary.title ?? '').length
-		)
+	let split_percentage = $derived(
+		Math.round(((currentIndex + 1) / slice.primary.carousel_group.length) * 100)
 	);
+
+	let gradientStart = $derived(Math.max(0, split_percentage - 10));
+	let gradientEnd = $derived(Math.min(100, split_percentage + 10));
 </script>
 
 <section
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
-	class="mx-auto w-full max-w-2xl p-4"
+	class="mx-auto min-h-screen w-full max-w-2xl snap-start p-4"
 >
 	<!-- Carousel Title -->
-	<h2 class="mb-6 text-center text-4xl font-bold">
+	<h2
+		class="text-secondary-500 inline-block text-4xl font-bold drop-shadow-md not-noscript:text-transparent"
+		style="background: linear-gradient(90deg, var(--color-primary-500) {gradientStart}%, var(--color-secondary-500) {gradientEnd}%); -webkit-background-clip: text; background-clip: text;"
+	>
 		{slice.primary.title}
 	</h2>
+
+	{#if isFilled.richText(slice.primary.carousel_text)}
+		<div class="pb-2">
+			<PrismicRichText field={slice.primary.carousel_text} />
+		</div>
+	{/if}
 
 	<!-- Carousel Container -->
 	<div class="relative overflow-hidden rounded inset-shadow-xs backdrop-blur-sm">
@@ -207,7 +216,7 @@
 			<!-- Scrollable thumbnail container -->
 			<div
 				bind:this={thumbnailContainer}
-				class="scrollbar-hide flex snap-x snap-mandatory justify-center-safe gap-2 overflow-x-auto mask-r-from-90% mask-r-to-100% mask-l-from-90% mask-l-to-100% px-4 py-2"
+				class="scrollbar-hide flex snap-x snap-mandatory justify-center-safe gap-2 overflow-x-auto mask-r-from-95% mask-r-to-100% mask-l-from-95% mask-l-to-100% px-4 py-2"
 				style="scroll-behavior: smooth; -webkit-overflow-scrolling: touch;"
 			>
 				{#each slice.primary.carousel_group as carousel_item, index}

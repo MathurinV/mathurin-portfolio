@@ -13,9 +13,6 @@
 					"choices": {
 						"carousel": {
 							"type": "SharedSlice"
-						},
-						"hero": {
-							"type": "SharedSlice"
 						}
 					}
 				}
