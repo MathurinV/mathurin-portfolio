@@ -4,7 +4,7 @@ import type * as prismic from '@prismicio/client';
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type HomepageDocumentDataSlicesSlice = CarouselSlice;
+type HomepageDocumentDataSlicesSlice = HeroSlice | CarouselSlice;
 
 /**
  * Content for Homepage documents
@@ -167,6 +167,68 @@ type CarouselSliceVariation = CarouselSliceDefault;
  */
 export type CarouselSlice = prismic.SharedSlice<'carousel', CarouselSliceVariation>;
 
+/**
+ * Primary content in *Hero → Default → Primary*
+ */
+export interface HeroSliceDefaultPrimary {
+	/**
+	 * Creator name field in *Hero → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero.default.primary.creator_name
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	creator_name: prismic.KeyTextField;
+
+	/**
+	 * Website name field in *Hero → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero.default.primary.website_name
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	website_name: prismic.KeyTextField;
+
+	/**
+	 * Website introduction field in *Hero → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero.default.primary.website_introduction
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	website_introduction: prismic.RichTextField;
+}
+
+/**
+ * Default variation for Hero Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeroSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<HeroSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *Hero*
+ */
+type HeroSliceVariation = HeroSliceDefault;
+
+/**
+ * Hero Shared Slice
+ *
+ * - **API ID**: `hero`
+ * - **Description**: Hero
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeroSlice = prismic.SharedSlice<'hero', HeroSliceVariation>;
+
 declare module '@prismicio/client' {
 	interface CreateClient {
 		(
@@ -196,7 +258,11 @@ declare module '@prismicio/client' {
 			CarouselSliceDefaultPrimaryCarouselGroupItem,
 			CarouselSliceDefaultPrimary,
 			CarouselSliceVariation,
-			CarouselSliceDefault
+			CarouselSliceDefault,
+			HeroSlice,
+			HeroSliceDefaultPrimary,
+			HeroSliceVariation,
+			HeroSliceDefault
 		};
 	}
 }

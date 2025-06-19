@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { CarouselCard } from '$lib/components';
+	import { CarouselCard, MyRichText } from '$lib/components';
 	import { isFilled, type Content } from '@prismicio/client';
-	import { PrismicRichText, type SliceComponentProps } from '@prismicio/svelte';
+	import { type SliceComponentProps } from '@prismicio/svelte';
 	import { onMount, onDestroy } from 'svelte';
 
 	type Props = SliceComponentProps<Content.CarouselSlice>;
@@ -190,7 +190,7 @@
 
 	{#if isFilled.richText(slice.primary.carousel_text)}
 		<div class="pb-2">
-			<PrismicRichText field={slice.primary.carousel_text} />
+			<MyRichText field={slice.primary.carousel_text} />
 		</div>
 	{/if}
 

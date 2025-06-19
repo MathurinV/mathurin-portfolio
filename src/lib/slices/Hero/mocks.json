@@ -1,0 +1,30 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"creator_name": {
+				"__TYPE__": "FieldContent",
+				"value": "slept",
+				"type": "Text"
+			},
+			"website_name": {
+				"__TYPE__": "FieldContent",
+				"value": "opinion",
+				"type": "Text"
+			},
+			"website_introduction": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Enim magna incididunt ad qui nulla anim."
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

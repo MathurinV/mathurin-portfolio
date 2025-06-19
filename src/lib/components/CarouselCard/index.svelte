@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { isFilled, type Content } from '@prismicio/client';
-	import { PrismicLink, PrismicRichText } from '@prismicio/svelte';
+	import { PrismicLink } from '@prismicio/svelte';
 	import type { Simplify } from '../../../prismicio-types';
+	import { MyRichText } from '..';
 
 	const carousel_item: Simplify<Content.CarouselSliceDefaultPrimaryCarouselGroupItem> = $props();
 </script>
@@ -21,7 +22,7 @@
 		{#if isFilled.richText(carousel_item.description)}
 			<div class="absolute inset-0 z-10 flex items-center justify-center p-4">
 				<div class="bg-surface-50-950/80 rounded p-2">
-					<PrismicRichText field={carousel_item.description} />
+					<MyRichText field={carousel_item.description} />
 				</div>
 			</div>
 		{/if}
