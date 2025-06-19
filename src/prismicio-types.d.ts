@@ -130,6 +130,16 @@ export interface CarouselSliceDefaultPrimary {
 	carousel_text: prismic.RichTextField;
 
 	/**
+	 * Carousel note field in *Carousel → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: carousel.default.primary.carousel_note
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	carousel_note: prismic.RichTextField;
+
+	/**
 	 * Carousel group field in *Carousel → Default → Primary*
 	 *
 	 * - **Field Type**: Group

@@ -6,7 +6,7 @@
 	let { field } = $props();
 </script>
 
-<div class="rounded p-2">
+<div class="dark:bg-surface-900/80 rounded bg-white/80 p-2 shadow">
 	<PrismicRichText
 		{field}
 		components={{

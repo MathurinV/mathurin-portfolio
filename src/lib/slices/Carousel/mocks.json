@@ -102,6 +102,17 @@
 						}
 					}
 				]
+			},
+			"carousel_note": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Mollit nisi cillum officia labore aliqua."
+						}
+					}
+				]
 			}
 		},
 		"items": []

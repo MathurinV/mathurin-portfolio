@@ -23,8 +23,8 @@
 					{slice.primary.creator_name}
 				</h2>
 			</div>
-			<div class="rounded inset-shadow-xs backdrop-blur-md">
-				<h1 class="text-secondary-500 text-6xl text-shadow-md">
+			<div class="rounded">
+				<h1 class="text-primary-500 text-6xl text-shadow-md">
 					{slice.primary.website_name}
 				</h1>
 				{#if isFilled.richText(slice.primary.website_introduction)}
@@ -36,6 +36,6 @@
 		</div>
 
 		<!-- Art -->
-		<div class=""></div>
+		<div class="bg-primary-500 h-64 w-64 rounded-full"></div>
 	</div>
 </section>

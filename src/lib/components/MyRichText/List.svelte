@@ -5,6 +5,6 @@
 	let { children }: RichTextComponentProps<RTListNode> = $props();
 </script>
 
-<ul class="list-disc pl-6">
+<ul class="dark:bg-surface-900 m-2 list-disc rounded bg-white px-6 py-2 shadow">
 	{@render children?.()}
 </ul>

@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { CarouselCard, MyRichText } from '$lib/components';
+	import MyRichDescription from '$lib/components/MyRichText/MyRichDescription.svelte';
+	import Note from '$lib/components/MyRichText/Note.svelte';
 	import { isFilled, type Content } from '@prismicio/client';
 	import { type SliceComponentProps } from '@prismicio/svelte';
 	import { onMount, onDestroy } from 'svelte';
@@ -182,7 +184,7 @@
 >
 	<!-- Carousel Title -->
 	<h2
-		class="text-secondary-500 inline-block text-4xl font-bold drop-shadow-md not-noscript:text-transparent"
+		class="text-secondary-500 inline-block pb-4 text-4xl font-bold drop-shadow-md not-noscript:text-transparent"
 		style="background: linear-gradient(90deg, var(--color-primary-500) {gradientStart}%, var(--color-secondary-500) {gradientEnd}%); -webkit-background-clip: text; background-clip: text;"
 	>
 		{slice.primary.title}
@@ -195,12 +197,27 @@
 	{/if}
 
 	<!-- Carousel Container -->
-	<div class="relative overflow-hidden rounded inset-shadow-xs backdrop-blur-sm">
+	<div class="relative m-2 overflow-hidden rounded inset-shadow-xs backdrop-blur-sm">
+		<!-- Scroll indicators -->
+		<div
+			class="absolute top-1/2 left-2 z-10 flex -translate-y-1/2 animate-ping items-center justify-center gap-2"
+		>
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+				<path fill="currentColor" d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6l6 6l1.41-1.41z" />
+			</svg>
+		</div>
+		<div
+			class="absolute top-1/2 right-2 z-10 flex -translate-y-1/2 animate-ping items-center justify-center gap-2"
+		>
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+				<path fill="currentColor" d="M8.59 16.59L13.17 12l-4.58-4.59L10 6l6 6l-6 6l-1.41-1.41z" />
+			</svg>
+		</div>
 		<!-- Scrollable Carousel -->
 		<div
 			bind:this={carouselContainer}
 			id="carousel-container"
-			class="scrollbar-hide flex snap-x snap-mandatory overflow-x-scroll px-4 pb-4"
+			class="relative flex snap-x snap-mandatory overflow-x-scroll pb-4"
 		>
 			{#each slice.primary.carousel_group as carousel_item, index (carousel_item.media_link.text)}
 				<div class="flex w-full flex-shrink-0 snap-center justify-center px-8">
@@ -216,7 +233,7 @@
 			<!-- Scrollable thumbnail container -->
 			<div
 				bind:this={thumbnailContainer}
-				class="scrollbar-hide flex snap-x snap-mandatory justify-center-safe gap-2 overflow-x-auto mask-r-from-95% mask-r-to-100% mask-l-from-95% mask-l-to-100% px-4 py-2"
+				class="flex snap-x snap-mandatory justify-center-safe gap-2 overflow-x-auto mask-r-from-95% mask-r-to-100% mask-l-from-95% mask-l-to-100% px-4 py-2"
 				style="scroll-behavior: smooth; -webkit-overflow-scrolling: touch;"
 			>
 				{#each slice.primary.carousel_group as carousel_item, index}
@@ -249,4 +266,10 @@
 			</div>
 		</div>
 	</div>
+
+	{#if isFilled.richText(slice.primary.carousel_text)}
+		<div class="px-2">
+			<Note field={slice.primary.carousel_note} />
+		</div>
+	{/if}
 </section>
