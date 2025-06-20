@@ -6,7 +6,7 @@
 	let { field } = $props();
 </script>
 
-<div class="rounded p-2">
+<div class="rounded">
 	<PrismicRichText
 		{field}
 		components={{

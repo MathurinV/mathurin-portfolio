@@ -190,86 +190,86 @@
 		{slice.primary.title}
 	</h2>
 
-	{#if isFilled.richText(slice.primary.carousel_text)}
-		<div class="pb-2">
-			<MyRichText field={slice.primary.carousel_text} />
-		</div>
-	{/if}
+	<div class="px-2">
+		{#if isFilled.richText(slice.primary.carousel_text)}
+			<div class="pb-2">
+				<MyRichText field={slice.primary.carousel_text} />
+			</div>
+		{/if}
 
-	<!-- Carousel Container -->
-	<div class="relative m-2 overflow-hidden rounded inset-shadow-xs backdrop-blur-sm">
-		<!-- Scroll indicators -->
-		<div
-			class="absolute top-1/2 left-2 z-10 flex -translate-y-1/2 animate-ping items-center justify-center gap-2"
-		>
-			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-				<path fill="currentColor" d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6l6 6l1.41-1.41z" />
-			</svg>
-		</div>
-		<div
-			class="absolute top-1/2 right-2 z-10 flex -translate-y-1/2 animate-ping items-center justify-center gap-2"
-		>
-			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-				<path fill="currentColor" d="M8.59 16.59L13.17 12l-4.58-4.59L10 6l6 6l-6 6l-1.41-1.41z" />
-			</svg>
-		</div>
-		<!-- Scrollable Carousel -->
-		<div
-			bind:this={carouselContainer}
-			id="carousel-container"
-			class="relative flex snap-x snap-mandatory overflow-x-scroll pb-4"
-		>
-			{#each slice.primary.carousel_group as carousel_item, index (carousel_item.media_link.text)}
-				<div class="flex w-full flex-shrink-0 snap-center justify-center px-8">
-					<div class="w-80 max-w-sm">
-						<CarouselCard {...carousel_item} />
-					</div>
-				</div>
-			{/each}
-		</div>
-
-		<!-- Enhanced Thumbnail Navigation -->
-		<div class="relative mt-4 block pb-2 noscript:hidden">
-			<!-- Scrollable thumbnail container -->
+		<!-- Carousel Container -->
+		<div class="relative overflow-hidden rounded inset-shadow-xs backdrop-blur-sm">
+			<!-- Scroll indicators -->
 			<div
-				bind:this={thumbnailContainer}
-				class="flex snap-x snap-mandatory justify-center-safe gap-2 overflow-x-auto mask-r-from-95% mask-r-to-100% mask-l-from-95% mask-l-to-100% px-4 py-2"
-				style="scroll-behavior: smooth; -webkit-overflow-scrolling: touch;"
+				class="absolute top-1/2 left-2 z-10 flex -translate-y-1/2 animate-ping items-center justify-center gap-2"
 			>
-				{#each slice.primary.carousel_group as carousel_item, index}
-					<div class="flex-shrink-0 snap-center">
-						<div
-							class="dark:bg-surface-900 h-12 w-12 rounded-lg bg-white shadow transition-all duration-75 active:scale-95 sm:h-16 sm:w-16 {currentIndex ===
-							index
-								? 'scale-105'
-								: ''}"
-						>
-							<button
-								type="button"
-								onclick={() => scrollToItem(index)}
-								class="h-full w-full overflow-hidden rounded-lg p-1 transition-all duration-75 sm:p-2 {currentIndex ===
-								index
-									? 'opacity-100'
-									: 'opacity-60 hover:opacity-80'}"
-								aria-label={`Go to slide ${index + 1}`}
-							>
-								<img
-									src={carousel_item.image.thumbnail?.url || carousel_item.image.url}
-									alt={carousel_item.image.alt || `Slide ${index + 1}`}
-									class="svg-primary h-full w-full rounded object-cover"
-									loading="lazy"
-								/>
-							</button>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+					<path fill="currentColor" d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6l6 6l1.41-1.41z" />
+				</svg>
+			</div>
+			<div
+				class="absolute top-1/2 right-2 z-10 flex -translate-y-1/2 animate-ping items-center justify-center gap-2"
+			>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+					<path fill="currentColor" d="M8.59 16.59L13.17 12l-4.58-4.59L10 6l6 6l-6 6l-1.41-1.41z" />
+				</svg>
+			</div>
+			<!-- Scrollable Carousel -->
+			<div
+				bind:this={carouselContainer}
+				id="carousel-container"
+				class="relative flex snap-x snap-mandatory overflow-x-scroll pb-4"
+			>
+				{#each slice.primary.carousel_group as carousel_item, index (carousel_item.media_link.text)}
+					<div class="flex w-full flex-shrink-0 snap-center justify-center px-8">
+						<div class="w-80 max-w-sm">
+							<CarouselCard {...carousel_item} />
 						</div>
 					</div>
 				{/each}
 			</div>
-		</div>
-	</div>
 
-	{#if isFilled.richText(slice.primary.carousel_text)}
-		<div class="px-2">
-			<Note field={slice.primary.carousel_note} />
+			<!-- Enhanced Thumbnail Navigation -->
+			<div class="relative mt-4 block pb-2 noscript:hidden">
+				<!-- Scrollable thumbnail container -->
+				<div
+					bind:this={thumbnailContainer}
+					class="flex snap-x snap-mandatory justify-center-safe gap-2 overflow-x-auto mask-r-from-95% mask-r-to-100% mask-l-from-95% mask-l-to-100% px-4 py-2"
+					style="scroll-behavior: smooth; -webkit-overflow-scrolling: touch;"
+				>
+					{#each slice.primary.carousel_group as carousel_item, index}
+						<div class="flex-shrink-0 snap-center">
+							<div
+								class="dark:bg-surface-900 h-12 w-12 rounded-lg bg-white shadow transition-all duration-75 active:scale-95 sm:h-16 sm:w-16 {currentIndex ===
+								index
+									? 'scale-105'
+									: ''}"
+							>
+								<button
+									type="button"
+									onclick={() => scrollToItem(index)}
+									class="h-full w-full overflow-hidden rounded-lg p-1 transition-all duration-75 sm:p-2 {currentIndex ===
+									index
+										? 'opacity-100'
+										: 'opacity-60 hover:opacity-80'}"
+									aria-label={`Go to slide ${index + 1}`}
+								>
+									<img
+										src={carousel_item.image.thumbnail?.url || carousel_item.image.url}
+										alt={carousel_item.image.alt || `Slide ${index + 1}`}
+										class="svg-primary h-full w-full rounded object-cover"
+										loading="lazy"
+									/>
+								</button>
+							</div>
+						</div>
+					{/each}
+				</div>
+			</div>
 		</div>
-	{/if}
+
+		{#if isFilled.richText(slice.primary.carousel_text)}
+			<Note field={slice.primary.carousel_note} />
+		{/if}
+	</div>
 </section>

@@ -27,8 +27,9 @@
 				<h1 class="text-primary-500 text-6xl text-shadow-md">
 					{slice.primary.website_name}
 				</h1>
+
 				{#if isFilled.richText(slice.primary.website_introduction)}
-					<div class="rich-text pt-4">
+					<div class="rich-text px-2 pt-4">
 						<MyRichText field={slice.primary.website_introduction} />
 					</div>
 				{/if}

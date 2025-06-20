@@ -6,7 +6,7 @@
 	let { field } = $props();
 </script>
 
-<div class="card preset-filled-surface-200-800 flex w-full items-center gap-2 p-2">
+<div class="card preset-outlined-success-200-800 flex w-full items-center gap-2 p-2">
 	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
 		><path
 			fill="currentColor"
