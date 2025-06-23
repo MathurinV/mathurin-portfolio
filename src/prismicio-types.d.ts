@@ -4,7 +4,7 @@ import type * as prismic from '@prismicio/client';
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type HomepageDocumentDataSlicesSlice = HeroSlice | CarouselSlice;
+type HomepageDocumentDataSlicesSlice = ContactSlice | HeroSlice | CarouselSlice;
 
 /**
  * Content for Homepage documents
@@ -178,6 +178,83 @@ type CarouselSliceVariation = CarouselSliceDefault;
 export type CarouselSlice = prismic.SharedSlice<'carousel', CarouselSliceVariation>;
 
 /**
+ * Item in *Contact → Default → Primary → Contact items*
+ */
+export interface ContactSliceDefaultPrimaryContactItemsItem {
+	/**
+	 * Contact image field in *Contact → Default → Primary → Contact items*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact.default.primary.contact_items[].contact_image
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	contact_image: prismic.ImageField<never>;
+
+	/**
+	 * Contact link field in *Contact → Default → Primary → Contact items*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact.default.primary.contact_items[].contact_link
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	contact_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Primary content in *Contact → Default → Primary*
+ */
+export interface ContactSliceDefaultPrimary {
+	/**
+	 * Contact description field in *Contact → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact.default.primary.contact_description
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	contact_description: prismic.RichTextField;
+
+	/**
+	 * Contact items field in *Contact → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact.default.primary.contact_items[]
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	contact_items: prismic.GroupField<Simplify<ContactSliceDefaultPrimaryContactItemsItem>>;
+}
+
+/**
+ * Default variation for Contact Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContactSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<ContactSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *Contact*
+ */
+type ContactSliceVariation = ContactSliceDefault;
+
+/**
+ * Contact Shared Slice
+ *
+ * - **API ID**: `contact`
+ * - **Description**: Contact
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContactSlice = prismic.SharedSlice<'contact', ContactSliceVariation>;
+
+/**
  * Primary content in *Hero → Default → Primary*
  */
 export interface HeroSliceDefaultPrimary {
@@ -269,6 +346,11 @@ declare module '@prismicio/client' {
 			CarouselSliceDefaultPrimary,
 			CarouselSliceVariation,
 			CarouselSliceDefault,
+			ContactSlice,
+			ContactSliceDefaultPrimaryContactItemsItem,
+			ContactSliceDefaultPrimary,
+			ContactSliceVariation,
+			ContactSliceDefault,
 			HeroSlice,
 			HeroSliceDefaultPrimary,
 			HeroSliceVariation,
