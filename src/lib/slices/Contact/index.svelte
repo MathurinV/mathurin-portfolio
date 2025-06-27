@@ -32,7 +32,7 @@
 		<!-- Contact wrapper div -->
 		<div class="relative overflow-hidden rounded inset-shadow-xs backdrop-blur-sm">
 			<!-- Scrollable contacts div -->
-			<div class="relative flex h-9 snap-y snap-mandatory flex-col overflow-y-scroll pb-4">
+			<div class="relative flex snap-y snap-mandatory flex-col overflow-y-scroll pb-4">
 				{#each slice.primary.contact_items as contact_item (contact_item.contact_link.text)}
 					<!-- Contact item div -->
 					<div class="flex snap-start flex-row gap-2">
